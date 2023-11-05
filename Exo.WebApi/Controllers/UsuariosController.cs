@@ -3,6 +3,12 @@ using Exo.WebApi.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+
+
 namespace Exo.WebApi.Controllers
 {
 [Produces("application/json")]
@@ -29,6 +35,13 @@ public IActionResult Cadastrar(Usuario usuario)
 _usuarioRepository.Cadastrar(usuario);
 return StatusCode(201);
 }
+// Fim do novo código POST para auxiliar o método de Login.
+// Atualiza
+
+[Authorize]
+[HttpPut("{id}")]
+
+
 // get -> /api/usuarios/{id}
 [HttpGet("{id}")] // Faz a busca pelo ID.
 public IActionResult BuscarPorId(int id)
